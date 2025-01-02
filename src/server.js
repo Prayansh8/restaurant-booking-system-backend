@@ -16,7 +16,7 @@ connectToDatabase();
 // Use booking routes
 app.use("/api/bookings", bookingRoutes);
 app.get("/", (req, res) => {
-  res.send("GET request to the homepage");
+ return res.send("GET request to the homepage");
 });
 
 // Start the server

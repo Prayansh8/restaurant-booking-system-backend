@@ -24,22 +24,22 @@ exports.createBooking = async (req, res) => {
 
 exports.getBookings = async (req, res) => {
   try {
-    const bookings = await Booking.find({});
-    res.json(bookings);
+    const bookings = await db.Booking.find({});
+    return res.json(bookings);
   } catch (err) {
-    res.status(500).json({ error: "Failed to fetch bookings" });
+    return res.status(500).json({ error: "Failed to fetch bookings" });
   }
 };
 
 exports.deleteBooking = async (req, res) => {
   try {
     const { id } = req.params;
-    const deletedBooking = await Booking.findByIdAndDelete(id);
+    const deletedBooking = await db.Booking.findByIdAndDelete(id);
     if (!deletedBooking) {
       return res.status(404).json({ error: "Booking not found" });
     }
-    res.json({ message: "Booking deleted successfully" });
+    return res.json({ message: "Booking deleted successfully" });
   } catch (err) {
-    res.status(500).json({ error: "Failed to delete booking" });
+    return res.status(500).json({ error: "Failed to delete booking" });
   }
 };
