@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const config = require("./config");
 const bookingRoutes = require("./routes/bookingRoutes");
 const { connectToDatabase } = require("./models/db");
+const path = require('path');
 
 const app = express();
 
@@ -15,8 +16,8 @@ connectToDatabase();
 
 // Use booking routes
 app.use("/api/bookings", bookingRoutes);
-app.get("/", (req, res) => {
- return res.send("GET request to the homepage");
+app.get('/', (req, res) => {
+  return res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // Start the server
